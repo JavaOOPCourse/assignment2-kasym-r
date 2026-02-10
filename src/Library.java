@@ -8,28 +8,49 @@ public class Library {
         count = 0;
     }
 
-    // TODO: Add book to array
     public void addBook(Book book) {
-        // implement
+        if (count >= books.length) {
+            System.out.println("No available places");
+        } else {
+            books[count++] = book;
+        }
     }
 
-    // TODO: Display all books
     public void displayBooks() {
-        // implement
+        for(Book b : books) {
+            if (b != null) {
+                System.out.println(b.toString());
+            }
+        }
     }
 
-    // TODO: Search book by title
     public Book searchByTitle(String title) {
+        for (Book b : books) {
+            if (b != null && b.getTitle().equals(title)) {
+                return b;
+            }
+        }
         return null;
     }
 
-    // TODO: Borrow book by title
     public void borrowBook(String title) {
-        // implement
+        Book x = searchByTitle(title);
+        if (x != null) {
+            x.borrowBook();
+        } else {
+            System.out.println("book not found");
+        }
+
     }
 
-    // TODO: Return book by title
     public void returnBook(String title) {
-        // implement
+        Book x = searchByTitle(title);
+        if (x != null ){
+            x.returnBook();
+
+        }else{
+            System.out.println("book not found");
+        }
     }
 }
+

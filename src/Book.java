@@ -1,57 +1,68 @@
 public class Book {
-
-    // TODO: make fields private
     private String title;
     private String author;
     private int year;
     private boolean isAvailable;
 
-    // TODO: Implement parameterized constructor
     public Book(String title, String author, int year) {
-        // implement
+        this.title = title;
+        this.author = author;
+        this.year = year;
+        isAvailable = true;
     }
 
-    // TODO: Implement copy constructor
     public Book(Book other) {
-        // implement
+        this.title = other.title;
+        this.author = other.author;
+        this.year = other.year;
+        this.isAvailable = other.isAvailable;
+
     }
 
-    // TODO: Implement getters
     public String getTitle() {
-        return null;
+        return title;
     }
 
     public String getAuthor() {
-        return null;
+        return author;
     }
 
     public int getYear() {
-        return 0;
+        return year;
     }
 
     public boolean isAvailable() {
-        return false;
+        return isAvailable;
     }
 
-    // TODO: Implement borrow logic
-    public void borrowBook() {
-        // implement
+    void borrowBook() {
+        if (isAvailable) {
+            isAvailable = false;
+            System.out.println("Book was successfully borrowed!");
+        } else {
+            System.out.println("Book is already borrowed!");
+        }
     }
 
-    // TODO: Implement return logic
-    public void returnBook() {
-        // implement
+    void returnBook() {
+        if (isAvailable){
+            System.out.println("Book is already in the library!");
+        }else {
+            isAvailable = true;
+            System.out.println("Book was successfully returned!");
+        }
     }
 
-    // TODO: Override toString()
     @Override
     public String toString() {
-        return "";
+        return "Title: " + title + " Author: " + author + " Year: " + year + " Available: "+ isAvailable;
     }
 
-    // TODO: Override equals()
     @Override
     public boolean equals(Object obj) {
-        return false;
+        if (!(obj instanceof Book)) return false;
+
+        Book other = (Book) obj;
+        return this.title.equals(other.title) && this.author.equals(other.author) && this.year == other.year;
     }
 }
